@@ -1,38 +1,94 @@
-.App {
-  text-align: center;
+.sign-in-btn {
+	font-weight: bold;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+a.text-success:hover {
+	color: limegreen!important;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.w-15 {
+	width: 15%;
+	min-width: 125px!important;
+	max-width: 200px!important;
+	white-space: initial;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.form-control {
+	font-size: 1.1em;
 }
 
-.App-link {
-  color: #61dafb;
+.description-vote {
+	font-size: 1.1em;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.err {
+	font-weight: bold;
+}
+
+.welcome {
+	white-space: nowrap;
+}
+
+@media (min-width: 992px) {
+	.fixed-lg{
+		width: 720px;
+	}
+}
+
+@media (min-width: 575.99px) { 
+	.rd-size {
+		height:25px; 
+		width:25px;
+		accent-color: green;
+		margin-top: 0!important;
+	}
+}
+
+@media (max-width: 575.98px) { 
+	.rd-size {
+		height:20px; 
+		width:20px;
+		accent-color: green;
+		margin-top: 5px;
+	}
+
+	.fs-s-lg {
+		font-size: 4vh;
+		margin-bottom: 0;
+		font-weight: 0;
+	}
+
+	.fs-lg {
+		font-size: 3.2vh;
+		margin-bottom: 0;
+		font-weight: 0;
+	}
+
+	.fs-md {
+		font-size: 2.5vh;
+		margin-bottom: 0;
+		font-weight: 0;
+	}
+
+	.fs-sm {
+		font-size: 2vh;
+		margin-bottom: 0;
+		font-weight: 0;
+	}
+
+	.fs-xs {
+		font-size: 1.5vh;
+		margin-bottom: 0;
+		font-weight: 0;
+	}
+
+	.mx-4 {
+		margin-left: 0!important;
+		margin-right: 0!important;
+	}
+
+	.sm-top {
+		margin-top: 0!important;
+	}
+
 }
