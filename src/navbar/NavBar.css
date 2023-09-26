@@ -1,0 +1,27 @@
+.sign-in-btn {
+	font-weight: bold;
+}
+
+a.sign-in-btn:hover {
+	color: limegreen!important;
+}
+
+.home:hover div {
+	color: #cbd3da!important;
+}
+
+.home:hover svg {
+	color: #cbd3da!important;
+}
+
+.create:hover svg {
+	color: limegreen!important;
+}
+
+.create:hover div {
+	color: #cbd3da!important;
+}
+
+.toggle:hover svg {
+	color: #cbd3da!important;
+}
