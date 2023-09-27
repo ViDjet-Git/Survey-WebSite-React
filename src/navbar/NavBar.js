@@ -1,14 +1,21 @@
+import './NavBar.css'
 import Nav from 'react-bootstrap/Nav'
 import Navbar from 'react-bootstrap/Navbar'
 import Container from 'react-bootstrap/Container'
 import { NavbarBrand } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
-import './NavBar.css'
-
+import { useState } from 'react'
+import { event } from 'jquery'
 
 function NavBar() {
-    return(
-        <Navbar expand="lg" sticky="top" bg="dark" className="mx-4 rounded-top py-0 mt-3 sm-top">
+    const [expanded, setExpanded] = useState(false);
+
+	const delay = ms => new Promise(
+		resolve => setTimeout(resolve, ms)
+	);
+
+	return(
+        <Navbar expanded={expanded} expand="lg" sticky="top" bg="dark" className="mx-4 rounded-top py-0 mt-3 sm-top">
   		<Container fluid>
     		<NavbarBrand className="d-flex mx-2 py-2">
 				<Link to={'/'} className="home d-flex text-decoration-none">
@@ -27,16 +34,18 @@ function NavBar() {
 				</svg>
     		</NavbarBrand>
   			</Nav>
-    		<Navbar.Toggle aria-controls="navbarSupportedContent" id="toggle-add" className="toggle border border-0">
+    		<Navbar.Toggle onClick={() => setExpanded(expanded ? false : "expanded")} 
+			onBlur={async event => {await delay(300); setExpanded(false);}}
+			aria-controls="navbarSupportedContent" id="myToggle" className="toggle border border-0">
       			<svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" className="bi bi-filter-right text-light" viewBox="0 0 16 16">
   				<path d="M14 10.5a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0 0 1h3a.5.5 0 0 0 .5-.5zm0-3a.5.5 0 0 0-.5-.5h-7a.5.5 0 0 0 0 1h7a.5.5 0 0 0 .5-.5zm0-3a.5.5 0 0 0-.5-.5h-11a.5.5 0 0 0 0 1h11a.5.5 0 0 0 .5-.5z"/>
 				</svg>
     		</Navbar.Toggle>
     		<Navbar.Collapse id="navbarSupportedContent">
       			<Nav className="me-auto mb-2 mb-lg-0">
-          			<Nav.Link className="text-light h5 mt-1 ml-2" href="profile.php">Profile</Nav.Link>
-          			<Nav.Link className="text-light h5 mt-1 ml-2" href="info.php">Info</Nav.Link>
-          			<Nav.Link className="sign-in-btn text-success h5 mt-1 ml-2" href="SignIn.php">Sign In</Nav.Link>
+          			<Link onClick={() => setExpanded(false)} className="text-light h5 mt-1 ml-2 text-decoration-none" to="/profile">Profile</Link>
+					<Link onClick={() => setExpanded(false)} className="text-light h5 mt-1 ml-2 text-decoration-none" to="/info">Info</Link>
+          			<Link onClick={() => setExpanded(false)} className="sign-in-btn text-success h5 mt-1 ml-2 text-decoration-none" to="/sign">Sign In</Link>
       			</Nav>
   			</Navbar.Collapse>
     	</Container>
