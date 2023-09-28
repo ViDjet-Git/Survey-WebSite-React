@@ -5,7 +5,6 @@ import Container from 'react-bootstrap/Container'
 import { NavbarBrand } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 import { useState } from 'react'
-import { event } from 'jquery'
 
 function NavBar() {
     const [expanded, setExpanded] = useState(false);
@@ -17,7 +16,7 @@ function NavBar() {
 	return(
         <Navbar expanded={expanded} expand="lg" sticky="top" bg="dark" className="mx-4 rounded-top py-0 mt-3 sm-top">
   		<Container fluid>
-    		<NavbarBrand className="d-flex ml-2 mr-0 py-2">
+    		<NavbarBrand className="d-flex ml-3 mr-0 py-2">
 				<Link to={'/'} className="home d-flex text-decoration-none">
     			<svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" className="bi bi-clipboard2-check-fill text-light mt-1 d-none d-lg-block" viewBox="0 0 16 16">
   				<path d="M10 .5a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5.5.5 0 0 1-.5.5.5.5 0 0 0-.5.5V2a.5.5 0 0 0 .5.5h5A.5.5 0 0 0 11 2v-.5a.5.5 0 0 0-.5-.5.5.5 0 0 1-.5-.5Z"/>
@@ -36,7 +35,7 @@ function NavBar() {
   			</Nav>
     		<Navbar.Toggle onClick={() => setExpanded(expanded ? false : "expanded")} 
 			onBlur={async event => {await delay(300); setExpanded(false);}}
-			aria-controls="navbarSupportedContent" id="myToggle" className="toggle border border-0">
+			aria-controls="navbarSupportedContent" id="myToggle" className="toggle border-0 pr-3">
       			<svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" className="bi bi-filter-right text-light" viewBox="0 0 16 16">
   				<path d="M14 10.5a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0 0 1h3a.5.5 0 0 0 .5-.5zm0-3a.5.5 0 0 0-.5-.5h-7a.5.5 0 0 0 0 1h7a.5.5 0 0 0 .5-.5zm0-3a.5.5 0 0 0-.5-.5h-11a.5.5 0 0 0 0 1h11a.5.5 0 0 0 .5-.5z"/>
 				</svg>
