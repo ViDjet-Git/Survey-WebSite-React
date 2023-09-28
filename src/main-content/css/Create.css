@@ -1,0 +1,13 @@
+.w-15 {
+	width: 15%;
+	min-width: 125px!important;
+	max-width: 200px!important;
+}
+
+.w-15 h5 {
+	white-space: initial;
+}
+
+#name {
+    height: auto;
+}

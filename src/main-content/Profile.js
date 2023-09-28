@@ -2,12 +2,12 @@ import Table from "react-bootstrap/Table"
 
 function Profile() {
     return(
-    <div class="main-content mx-4 border border-top-0 border-dark rounded-bottom py-2 px-3">
-		<div class="mx-4">
-			<h2 class="text-center mb-3 mt-2">
+    <div className="main-content mx-4 border border-top-0 border-dark rounded-bottom py-2 px-3">
+		<div className="mx-4">
+			<h2 className="text-center mb-3 mt-2">
 				Profile
 			</h2>
-			<Table hover class="fs-sm">
+			<Table hover className="fs-sm">
   				<tbody>
     				<tr>
       				<th scope="row">UserName:</th>

@@ -1,0 +1,22 @@
+.description-vote {
+	font-size: 1.1em!important;
+}
+
+
+@media (min-width: 575.99px) { 
+	.rd-size input {
+		height:25px; 
+		width:25px;
+		accent-color: green;
+		margin-top: 0!important;
+	}
+}
+
+@media (max-width: 575.98px) { 
+	.rd-size input {
+		height:20px; 
+		width:20px;
+		accent-color: green;
+		margin-top: 5px;
+	}
+}

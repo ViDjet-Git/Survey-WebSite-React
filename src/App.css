@@ -6,29 +6,18 @@
 	white-space: nowrap;
 }
 
+.form-control {
+	font-size: 1.1em!important;
+}
+
 @media (min-width: 992px) {
 	.fixed-lg{
 		width: 720px;
 	}
 }
 
-@media (min-width: 575.99px) { 
-	.rd-size {
-		height:25px; 
-		width:25px;
-		accent-color: green;
-		margin-top: 0!important;
-	}
-}
-
 @media (max-width: 575.98px) { 
-	.rd-size {
-		height:20px; 
-		width:20px;
-		accent-color: green;
-		margin-top: 5px;
-	}
-
+	
 	.fs-s-lg {
 		font-size: 4vh;
 		margin-bottom: 0;
