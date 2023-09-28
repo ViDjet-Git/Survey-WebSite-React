@@ -1,5 +1,6 @@
 import Table from 'react-bootstrap/Table'
 import Button from 'react-bootstrap/Button'
+import { Link } from 'react-router-dom';
 
 function Home() {
     return(
@@ -21,27 +22,33 @@ function Home() {
       					<th scope="row">Name of the sculpture in the central park</th>
       					<td>Discription Discription DiscriptionDi scriptio DiscriptionDiscrip tionDiscr iptionD iscript ionDiscr iptionDiscri ptionDiscriptio nDiscriptionDiscriptio nDiscription</td>
       					<td className="text-center pt-3">
-      						<Button variant="success" className="mx-0">
+							<Link to={'/vote'}>
+      							<Button variant="success" className="mx-0">
       							Vote
-      						</Button>
+      							</Button>
+							</Link>
       					</td>
     				</tr>
     				<tr>
       					<th scope="row">Street name</th>
       					<td>Change street name from Tutunika in Vinnitsa</td>
       					<td className="text-center pt-3">
-      						<Button variant="success" className="mx-0">
+						  	<Link to={'/vote'}>
+      							<Button variant="success" className="mx-0">
       							Vote
-      						</Button>
+      							</Button>
+							</Link>
       					</td>
     				</tr>
     				<tr>
       					<th scope="row">Change metro name</th>
       					<td>Change metro name (Kyiv, Polytech street)</td>
       					<td className="text-center pt-3">
-      						<Button variant="success" className="mx-0">
+						  	<Link to={'/vote'}>
+      							<Button variant="success" className="mx-0">
       							Vote
-      						</Button>
+      							</Button>
+							</Link>
       					</td>
     				</tr>
   				</tbody>
