@@ -48,7 +48,7 @@ function Home() {
 			</Table>
 		    </div>
 	    </div>
-    )
+    );
 }
 
 export default Home;

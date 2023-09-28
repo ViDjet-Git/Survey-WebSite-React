@@ -1,3 +1,5 @@
+import Table from "react-bootstrap/Table"
+
 function Profile() {
     return(
     <div class="main-content mx-4 border border-top-0 border-dark rounded-bottom py-2 px-3">
@@ -5,7 +7,7 @@ function Profile() {
 			<h2 class="text-center mb-3 mt-2">
 				Profile
 			</h2>
-			<table class="table table-hover fs-sm">
+			<Table hover class="fs-sm">
   				<tbody>
     				<tr>
       				<th scope="row">UserName:</th>
@@ -24,10 +26,10 @@ function Profile() {
       				<td id="birthday">00.00.0000</td>
     				</tr>
   				</tbody>
-			</table>
+			</Table>
 		</div>
 	</div>
-    )
+    );
 }
 
 export default Profile;
