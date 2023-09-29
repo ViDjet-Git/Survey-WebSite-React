@@ -1,10 +1,28 @@
 import Form from "react-bootstrap/Form"
 import Button from "react-bootstrap/Button"
+import $ from "jquery"
+import { useState } from "react";
 
 function Register() {
+	const [result, setResult] = useState("");
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        const form = $(e.target);
+        $.ajax({
+            type: "POST",
+            url: form.attr("action"),
+            data: form.serialize(),
+            success(data) {
+                setResult(data);
+            },
+        });
+    };
+    
     return(
     <div className="main-content">
-		<form action="register.php" method="post" className="fixed-lg container border rounded mt-5 p-5 bg-light sm-top">
+		<form action="http://localhost:8000/server.php" method="post" className="fixed-lg container border rounded mt-5 p-5 bg-light sm-top" 
+        onSubmit={(event) => handleSubmit(event)}>
 			<h1 className="text-center mb-4">Registration</h1>
 			<div className="Email Address ml-5 mr-5 mb-4">
 				<div className="mb-1 ">Email Address</div>
@@ -54,8 +72,9 @@ function Register() {
 			</div>
 
 			<Button variant="success" id="reg" type="submit" className="ml-5 mr-2">Register</Button>
-			<Button variant="secondary" id="sign" onclick="location.href='SignIn.php'">Sign In</Button>
+			<Button variant="secondary" id="sign" onclick="">Sign In</Button>
 		</form>
+		<h5>{result}</h5>
 	</div>
     );
 }
