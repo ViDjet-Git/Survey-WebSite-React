@@ -46,7 +46,7 @@ function NavBar() {
       			<Nav className="me-auto mb-2 mb-lg-0">
           			<Link onClick={() => setExpanded(false)} className="text-light h4 mt-1 ml-3 text-decoration-none" to={'/profile'}>Profile</Link>
 					<Link onClick={() => setExpanded(false)} className="text-light h4 mt-1 ml-3 text-decoration-none" to={'/info'}>Info</Link>
-          			<Link onClick={() => setExpanded(false)} className="sign-in-btn text-success h4 mt-1 ml-3 text-decoration-none" to={'/sign'}>Sign In</Link>
+          			<Link onClick={() => setExpanded(false)} className="sign-in-btn text-success h4 mt-1 ml-3 text-decoration-none" to={'/sign_in'}>Sign In</Link>
       			</Nav>
   			</Navbar.Collapse>
     	</Container>

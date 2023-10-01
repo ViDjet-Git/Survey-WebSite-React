@@ -7,6 +7,7 @@ import Info from "./main-content/Info"
 import Vote from "./main-content/Vote"
 import Create from "./main-content/Create"
 import Register from "./main-content/Register"
+import SignIn from "./main-content/SignIn"
 
 function Empty() {
   return ;
@@ -22,6 +23,7 @@ function App() {
       <Route path="/vote" element={<NavBar />}></Route>
       <Route path="/create" element={<NavBar />}></Route>
       <Route path="/register" element={<Empty />}></Route>
+      <Route path="/sign_in" element={<Empty />}></Route>
     </Routes>
     <Routes>
       <Route path="/" element={<Home />}></Route>
@@ -30,6 +32,7 @@ function App() {
       <Route path="/vote" element={<Vote />}></Route>
       <Route path="/create" element={<Create />}></Route>
       <Route path="/register" element={<Register />}></Route>
+      <Route path="/sign_in" element={<SignIn />}></Route>
     </Routes>
     </BrowserRouter>
   );
