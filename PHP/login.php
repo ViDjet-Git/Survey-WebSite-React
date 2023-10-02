@@ -1,8 +1,10 @@
 <?php 
-header("Access-Control-Allow-Origin: *");
+header("Access-Control-Allow-Origin: http://localhost:3000");
 header("Access-COntrol-Allow-Methods: POST");
 header("Access-COntrol-Allow-Headers: Content-Type");
+header("Access-Control-Allow-Credentials: true");
 
+if(isset($_COOKIE['PHPSESSID'])) session_id($_COOKIE['PHPSESSID']);
 session_start();
 include "db_connect.php";
 
@@ -28,6 +30,7 @@ if(isset($_POST['email']) && isset($_POST['password'])){
 			$_SESSION['gender'] = $row['gender'];
 			$_SESSION['email'] = $row['email'];
             
+			session_write_close();
             echo(json_encode(array("success" => true)));
             exit();
 		} else {
@@ -40,4 +43,3 @@ if(isset($_POST['email']) && isset($_POST['password'])){
 	echo(json_encode(array("error" => "Unknown error")));
 	exit();
 }
-?>

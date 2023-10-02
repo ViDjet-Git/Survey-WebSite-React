@@ -5,28 +5,28 @@ import Container from 'react-bootstrap/Container'
 import { NavbarBrand } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 import { useState } from 'react'
+import $ from "jquery"
 
-function NavBar() {
+function NavBar(props) {
     const [expanded, setExpanded] = useState(false);
-
+	let log = props.loged['log'];
+	console.log(props.loged['log'] + " iii " + log);
 	const delay = ms => new Promise(
 		resolve => setTimeout(resolve, ms)
 	);
 
-	const checkLogin = () => {
-        $.ajax({
+	const handleLogOut = () => {
+		$.ajax({
             type: "POST",
-            url: "http://localhost:8000/check_session.php",
-			dataType: 'text',
+            url: "http://localhost:8000/logout.php",
+			xhrFields: {
+				withCredentials: true
+			},
             success: function(data) {
-                if(data * 1){
-					return true;
-				} else {
-					return false;
-				}
+                console.log("LOG OUT SUCCESS");
             },
         });
-    };
+	};
 
 	return(
         <Navbar expanded={expanded} expand="lg" sticky="top" bg="dark" className="mx-4 rounded-top py-0 mt-3 sm-top">
@@ -61,8 +61,8 @@ function NavBar() {
       			<Nav className="me-auto mb-2 mb-lg-0">
           			<Link onClick={() => setExpanded(false)} className="text-light h4 mt-1 ml-3 text-decoration-none" to={'/profile'}>Profile</Link>
 					<Link onClick={() => setExpanded(false)} className="text-light h4 mt-1 ml-3 text-decoration-none" to={'/info'}>Info</Link>
-					{checkLogin ?	//check if user is loged in
-          			<Link onClick={() => setExpanded(false)} className="sign-in-btn text-success h4 mt-1 ml-3 text-decoration-none" to={'/log_out'}>Log Out</Link> //if user is logged we navigate user to logout page
+					{log ?	//check if user is loged in
+          			<Link onClick={() => {setExpanded(false); handleLogOut();}} className="sign-in-btn text-success h4 mt-1 ml-3 text-decoration-none" to={'/sign_in'}>Log Out</Link> //if user is logged we navigate user to logout page
 					:
 					<Link onClick={() => setExpanded(false)} className="sign-in-btn text-success h4 mt-1 ml-3 text-decoration-none" to={'/sign_in'}>Sign In</Link> //if user is not signed we navigate user to sign in page
 					}

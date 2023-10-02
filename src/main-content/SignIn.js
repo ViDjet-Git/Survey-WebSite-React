@@ -25,6 +25,9 @@ function SignIn() {
         $.ajax({
             type: "POST",
             url: form.attr("action"),
+            xhrFields: {
+                withCredentials: true
+            },
             data: form.serialize(),
             success(data) {
                 ResultData(data);

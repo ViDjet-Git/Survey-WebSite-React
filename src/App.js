@@ -1,5 +1,6 @@
 import './App.css';
-import {Routes, Route, BrowserRouter} from "react-router-dom";
+import {Routes, Route, BrowserRouter, useLocation} from "react-router-dom";
+import $ from "jquery"
 import NavBar from "./navbar/NavBar"
 import Home from "./main-content/Home"
 import Profile from "./main-content/Profile"
@@ -8,16 +9,57 @@ import Vote from "./main-content/Vote"
 import Create from "./main-content/Create"
 import Register from "./main-content/Register"
 import SignIn from "./main-content/SignIn"
+import { useState } from 'react';
+import * as React from 'react';
 
 function Empty() {
   return ;
 }
 
 function App() {
+  const [log, setLog] = useState();
+  console.log("LOG: " + log);
+  let location = useLocation();
+  React.useEffect(() => {
+    let cookieValue = document.cookie.replace(/(?:(?:^|.*;\s*)PHPSESSID\s*\=\s*([^;]*).*$)|^.*$/, "$1");
+    console.log("CHANGED:" + cookieValue);
+    if(checkLogin()){
+      console.log("INSIDE IF CHECKOUT TRUE" + checkLogin());
+      setLog(true);
+    } else {
+      console.log("INSIDE IF CHECKOUT FALSE" + checkLogin());
+      setLog(false);
+    }
+  }, [location]);
+  
+
+  const checkLogin = () => {
+    var result;
+    $.ajax({
+      type: "POST",
+      async: false,
+      url: "http://localhost:8000/check_session.php",
+      dataType: 'text',
+      xhrFields: {
+        withCredentials: true
+      },
+      success: function(data) {
+        console.log("DATA from checkLogin: " + data);
+        if(data * 1){
+          console.log("LOGGED IN!!!!");
+          result = true;
+        } else {
+          result = false;
+        }
+      },
+    });
+    return result;
+  };
+
   return (
-    <BrowserRouter>
+    <div>
     <Routes> 
-      <Route path="/" element={<NavBar />}></Route>
+      <Route path="/" element={<NavBar loged={{log}}/>}></Route>
       <Route path="/profile" element={<NavBar />}></Route>
       <Route path="/info" element={<NavBar />}></Route>
       <Route path="/vote" element={<NavBar />}></Route>
@@ -34,7 +76,7 @@ function App() {
       <Route path="/register" element={<Register />}></Route>
       <Route path="/sign_in" element={<SignIn />}></Route>
     </Routes>
-    </BrowserRouter>
+    </div>
   );
 }
 
