@@ -18,16 +18,16 @@ function Empty() {
 
 function App() {
   const [log, setLog] = useState();
-  console.log("LOG: " + log);
+  //console.log("LOG: " + log);
   let location = useLocation();
   React.useEffect(() => {
-    let cookieValue = document.cookie.replace(/(?:(?:^|.*;\s*)PHPSESSID\s*\=\s*([^;]*).*$)|^.*$/, "$1");
-    console.log("CHANGED:" + cookieValue);
+    //let cookieValue = document.cookie.replace(/(?:(?:^|.*;\s*)PHPSESSID\s*\=\s*([^;]*).*$)|^.*$/, "$1");
+    //console.log("CHANGED:" + cookieValue);
     if(checkLogin()){
-      console.log("INSIDE IF CHECKOUT TRUE" + checkLogin());
+      //console.log("INSIDE IF CHECKOUT TRUE" + checkLogin());
       setLog(true);
     } else {
-      console.log("INSIDE IF CHECKOUT FALSE" + checkLogin());
+      //console.log("INSIDE IF CHECKOUT FALSE" + checkLogin());
       setLog(false);
     }
   }, [location]);
@@ -44,7 +44,7 @@ function App() {
         withCredentials: true
       },
       success: function(data) {
-        console.log("DATA from checkLogin: " + data);
+        //console.log("DATA from checkLogin: " + data);
         if(data * 1){
           console.log("LOGGED IN!!!!");
           result = true;
@@ -60,10 +60,10 @@ function App() {
     <div>
     <Routes> 
       <Route path="/" element={<NavBar loged={{log}}/>}></Route>
-      <Route path="/profile" element={<NavBar />}></Route>
-      <Route path="/info" element={<NavBar />}></Route>
-      <Route path="/vote" element={<NavBar />}></Route>
-      <Route path="/create" element={<NavBar />}></Route>
+      <Route path="/profile" element={<NavBar loged={{log}}/>}></Route>
+      <Route path="/info" element={<NavBar loged={{log}}/>}></Route>
+      <Route path="/vote" element={<NavBar loged={{log}}/>}></Route>
+      <Route path="/create" element={<NavBar loged={{log}}/>}></Route>
       <Route path="/register" element={<Empty />}></Route>
       <Route path="/sign_in" element={<Empty />}></Route>
     </Routes>

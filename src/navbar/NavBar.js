@@ -3,17 +3,49 @@ import Nav from 'react-bootstrap/Nav'
 import Navbar from 'react-bootstrap/Navbar'
 import Container from 'react-bootstrap/Container'
 import { NavbarBrand } from 'react-bootstrap'
-import { Link } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 import { useState } from 'react'
 import $ from "jquery"
+import * as React from 'react';
 
 function NavBar(props) {
     const [expanded, setExpanded] = useState(false);
+	const [profile, setProfile] = useState("");
 	let log = props.loged['log'];
-	console.log(props.loged['log'] + " iii " + log);
 	const delay = ms => new Promise(
 		resolve => setTimeout(resolve, ms)
 	);
+
+	let location = useLocation();
+  	React.useEffect(() => {
+    	setProfileName();
+  	}, [location]);
+	
+	function setProfileName() {
+		getInfoProfile("username");
+	}
+
+	function getInfoProfile(name) {	//get info from $_SESSION php
+		var obj;
+		$.ajax({
+			async: false,
+            type: "POST",
+            url: "http://localhost:8000/getInfo.php",
+			data: {"name": name},
+			xhrFields: {
+				withCredentials: true
+			},
+            success: function(data) {
+                obj = JSON.parse(data);
+				if(obj.error){
+					console.log(obj.error);
+				} else if(obj.success){
+					setProfile("(" + obj.success + ")");
+				}
+            },
+        });
+		return obj;
+	}
 
 	const handleLogOut = () => {
 		$.ajax({
@@ -59,7 +91,7 @@ function NavBar(props) {
     		</Navbar.Toggle>
     		<Navbar.Collapse id="navbarSupportedContent">
       			<Nav className="me-auto mb-2 mb-lg-0">
-          			<Link onClick={() => setExpanded(false)} className="text-light h4 mt-1 ml-3 text-decoration-none" to={'/profile'}>Profile</Link>
+          			<Link onClick={() => setExpanded(false)} className="text-light h4 mt-1 ml-3 text-decoration-none" to={'/profile'}>Profile {profile}</Link>
 					<Link onClick={() => setExpanded(false)} className="text-light h4 mt-1 ml-3 text-decoration-none" to={'/info'}>Info</Link>
 					{log ?	//check if user is loged in
           			<Link onClick={() => {setExpanded(false); handleLogOut();}} className="sign-in-btn text-success h4 mt-1 ml-3 text-decoration-none" to={'/sign_in'}>Log Out</Link> //if user is logged we navigate user to logout page
