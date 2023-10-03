@@ -1,9 +1,18 @@
 <?php 
-header("Access-Control-Allow-Origin: *");
+header("Access-Control-Allow-Origin: http://localhost:3000");
 header("Access-COntrol-Allow-Methods: POST");
 header("Access-COntrol-Allow-Headers: Content-Type");
+header("Access-Control-Allow-Credentials: true");
 
-session_start();
+if(isset($_COOKIE['PHPSESSID'])) {
+	session_id($_COOKIE['PHPSESSID']);
+    session_start();
+	if(isset($_SESSION['id'])){ 
+		echo(json_encode(array("error" => "Already signed in")));
+		exit();
+	}
+}
+
 include "db_connect.php";
 
 if(isset($_POST['email']) && isset($_POST['username']) && isset($_POST['birthday']) && 
@@ -65,4 +74,5 @@ if(isset($_POST['email']) && isset($_POST['username']) && isset($_POST['birthday
 	echo(json_encode(array("error" => "Unknown Error")));
 	exit();
 }
+
 ?>

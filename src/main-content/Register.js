@@ -28,6 +28,9 @@ function Register() {
             type: "POST",
             url: form.attr("action"),
             data: form.serialize(),
+			xhrFields: {
+				withCredentials: true
+			},
             success(data) {
                 ResultData(data);
             },

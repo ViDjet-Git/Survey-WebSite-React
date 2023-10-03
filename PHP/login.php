@@ -4,8 +4,15 @@ header("Access-COntrol-Allow-Methods: POST");
 header("Access-COntrol-Allow-Headers: Content-Type");
 header("Access-Control-Allow-Credentials: true");
 
-if(isset($_COOKIE['PHPSESSID'])) session_id($_COOKIE['PHPSESSID']);
-session_start();
+if(isset($_COOKIE['PHPSESSID'])) {
+	session_id($_COOKIE['PHPSESSID']);
+	session_start();
+	if(isset($_SESSION['id'])){ 
+		echo(json_encode(array("error" => "Already signed in")));
+		exit();
+	}
+}
+
 include "db_connect.php";
 
 if(isset($_POST['email']) && isset($_POST['password'])){

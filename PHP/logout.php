@@ -8,7 +8,7 @@ if(isset($_COOKIE['PHPSESSID'])){
     session_id($_COOKIE['PHPSESSID']);
     session_start();
 
-    setcookie('PHPSESSID', '', -3600, '/cv');
+    setcookie('PHPSESSID', '', -3600, '/');
     session_unset();
     session_destroy();
 }
