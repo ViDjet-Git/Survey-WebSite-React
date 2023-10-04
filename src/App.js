@@ -45,11 +45,11 @@ function App() {
       success: function(data) {
         obj = JSON.parse(data);
 				if(obj.error){
-					throw new Error(obj.error);
+					console.log(obj.error);
 				}
       },
     });
-		return obj;
+		return obj.success;
 	}
 
   const checkLogin = () => {

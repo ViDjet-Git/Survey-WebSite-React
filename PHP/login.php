@@ -11,6 +11,8 @@ if(isset($_COOKIE['PHPSESSID'])) {
 		echo(json_encode(array("error" => "Already signed in")));
 		exit();
 	}
+} else {
+	session_start();
 }
 
 include "db_connect.php";

@@ -12,18 +12,19 @@ function NavBar(props) {
     const [expanded, setExpanded] = useState(false);
 	const [profile, setProfile] = useState("");
 	let log = props.loged['log'];
+	console.log("LOG FROM NAVBAR: " + log);
 	const delay = ms => new Promise(
 		resolve => setTimeout(resolve, ms)
 	);
 
 	let location = useLocation();
   	React.useEffect(() => {
-    	setProfileName();
+		setProfileName();
   	}, [location]);
 	
 	function setProfileName() {
 		let obj = props.getInfo("username");
-		setProfile("(" + obj.success + ")");
+		if(obj) setProfile("(" + obj + ")");
 	}
 
 	const handleLogOut = () => {
