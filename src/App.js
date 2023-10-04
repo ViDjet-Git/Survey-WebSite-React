@@ -88,7 +88,7 @@ function App() {
     </Routes>
     <Routes>
       <Route path="/" element={<Home />}></Route>
-      <Route path="/profile" element={<Profile />}></Route>
+      <Route path="/profile" element={<Profile getInfo={getInfo}/>}></Route>
       <Route path="/info" element={<Info />}></Route>
       <Route path="/vote" element={<Vote />}></Route>
       <Route path="/create" element={<Create />}></Route>
