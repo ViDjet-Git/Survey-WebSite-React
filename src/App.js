@@ -32,6 +32,25 @@ function App() {
     }
   }, [location]);
   
+  function getInfo(name) {	//get info from $_SESSION php
+		var obj;
+		$.ajax({
+			async: false,
+      type: "POST",
+      url: "http://localhost:8000/getInfo.php",
+			data: {"name": name},
+			xhrFields: {
+			withCredentials: true
+			},
+      success: function(data) {
+        obj = JSON.parse(data);
+				if(obj.error){
+					throw new Error(obj.error);
+				}
+      },
+    });
+		return obj;
+	}
 
   const checkLogin = () => {
     var result;
@@ -59,11 +78,11 @@ function App() {
   return (
     <div>
     <Routes> 
-      <Route path="/" element={<NavBar loged={{log}}/>}></Route>
-      <Route path="/profile" element={<NavBar loged={{log}}/>}></Route>
-      <Route path="/info" element={<NavBar loged={{log}}/>}></Route>
-      <Route path="/vote" element={<NavBar loged={{log}}/>}></Route>
-      <Route path="/create" element={<NavBar loged={{log}}/>}></Route>
+      <Route path="/" element={<NavBar loged={{log}} getInfo={getInfo}/>}></Route>
+      <Route path="/profile" element={<NavBar loged={{log}} getInfo={getInfo}/>}></Route>
+      <Route path="/info" element={<NavBar loged={{log}} getInfo={getInfo}/>}></Route>
+      <Route path="/vote" element={<NavBar loged={{log}} getInfo={getInfo}/>}></Route>
+      <Route path="/create" element={<NavBar loged={{log}} getInfo={getInfo}/>}></Route>
       <Route path="/register" element={<Empty />}></Route>
       <Route path="/sign_in" element={<Empty />}></Route>
     </Routes>

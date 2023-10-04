@@ -22,29 +22,8 @@ function NavBar(props) {
   	}, [location]);
 	
 	function setProfileName() {
-		getInfoProfile("username");
-	}
-
-	function getInfoProfile(name) {	//get info from $_SESSION php
-		var obj;
-		$.ajax({
-			async: false,
-            type: "POST",
-            url: "http://localhost:8000/getInfo.php",
-			data: {"name": name},
-			xhrFields: {
-				withCredentials: true
-			},
-            success: function(data) {
-                obj = JSON.parse(data);
-				if(obj.error){
-					console.log(obj.error);
-				} else if(obj.success){
-					setProfile("(" + obj.success + ")");
-				}
-            },
-        });
-		return obj;
+		let obj = props.getInfo("username");
+		setProfile("(" + obj.success + ")");
 	}
 
 	const handleLogOut = () => {
