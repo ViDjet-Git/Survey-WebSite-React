@@ -24,6 +24,14 @@ if(isset($_POST['name'])){
             $email = $_SESSION['email'];
             echo(json_encode(array("success" => $email)));
 		    exit();
+        case "gender":
+            $gender = $_SESSION['gender'];
+            echo(json_encode(array("success" => $gender)));
+		    exit();
+        case "birthday":
+            $birthday = $_SESSION['birthday'];
+            echo(json_encode(array("success" => $birthday)));
+            exit();
         default:
             echo(json_encode(array("error" => "No such information")));
             exit();

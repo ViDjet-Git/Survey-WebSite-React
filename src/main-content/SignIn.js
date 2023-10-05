@@ -4,10 +4,21 @@ import Button from "react-bootstrap/Button";
 import { Link, useNavigate } from 'react-router-dom'
 import { useState } from "react";
 import $ from "jquery"
+import { useSearchParams } from "react-router-dom";
+import { Alert } from "react-bootstrap";
 
 function SignIn() {
     const [error, setError] = useState("");
     const navigate = useNavigate();
+    const [searchParams] = useSearchParams();
+    let alertMS = false;
+    console.log("LOGIN : " + searchParams);
+    if(searchParams == "login=true"){
+        console.log("LOGIN NA MESTE");
+        alertMS = true;
+    } else {
+        alertMS = false;
+    }
 
     function ResultData(data) {
 		var myData = JSON.parse(data);
@@ -37,6 +48,10 @@ function SignIn() {
 
     return(
     <div className="main-content">
+        {alertMS ? <Alert variant="danger" className="text-center">
+        Please <b>Sign In</b> to open your <b>Profile</b> page</Alert>
+        :
+        false}
 		<Form action="http://localhost:8000/login.php" method="post" onSubmit={(event) => handleSubmit(event)}>
 			<Container className="fixed-lg border rounded mt-5 p-5 bg-light sm-top">
             <h1 className="text-center mb-4">Sign In</h1>

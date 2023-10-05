@@ -32,7 +32,7 @@ function App() {
     }
   }, [location]);
   
-  function getInfo(name) {	//get info from $_SESSION php
+  function getInfo(name) {	//get info(email, username, gender, birthday or user ID) from $_SESSION php
 		var obj;
 		$.ajax({
 			async: false,
@@ -88,7 +88,7 @@ function App() {
     </Routes>
     <Routes>
       <Route path="/" element={<Home />}></Route>
-      <Route path="/profile" element={<Profile getInfo={getInfo}/>}></Route>
+      <Route path="/profile" element={<Profile loged={{log}} getInfo={getInfo}/>}></Route>
       <Route path="/info" element={<Info />}></Route>
       <Route path="/vote" element={<Vote />}></Route>
       <Route path="/create" element={<Create />}></Route>
