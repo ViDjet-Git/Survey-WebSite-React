@@ -3,8 +3,46 @@ import Button from "react-bootstrap/Button"
 import InputGroup from "react-bootstrap/InputGroup"
 import Form from "react-bootstrap/Form"
 import Table from 'react-bootstrap/Table';
+import { useState } from "react";
+
+const initialColumns = [
+(<tr id="1" key={1}>
+	<th scope="row">1</th>
+	<td className="text-center">
+		<Form.Control as="textarea" className="fs-sm" aria-label="With textarea" placeholder="Input variant here..."></Form.Control>
+	</td>
+</tr>),
+(<tr id="2" key={2}>
+    <th scope="row">2</th>
+    <td className="text-center">
+      		<Form.Control as="textarea" className="fs-sm" aria-label="With textarea" placeholder="Input variant here..."></Form.Control>
+    </td>
+</tr>)];
 
 function Create() {
+	const [columns, setColumns] = useState(initialColumns);
+
+	const addColumn = () => {
+		let index = columns.length;
+		index++;
+		const prevCols = [...columns];
+		prevCols.push(
+			<tr id={index} key={index}>
+    			<th scope="row">{index}</th>
+    			<td className="text-center">
+      				<Form.Control as="textarea" className="fs-sm" aria-label="With textarea" placeholder="Input variant here..."></Form.Control>
+    			</td>
+			</tr>
+		);
+		setColumns(prevCols);
+	};
+
+	const deleteColumn = () => {
+		const prevCols = [...columns];
+		prevCols.pop();
+		setColumns(prevCols);
+	};
+
     return(
     <div className="main-content mx-4 border border-top-0 border-dark rounded-bottom py-2 px-3">
 		<div className="mx-4">
@@ -31,26 +69,24 @@ function Create() {
     				</tr>
 				</thead>
   				<tbody id="mainbody">
-    				<tr id="1">
-      					<th scope="row">1</th>
-      					<td className="text-center">
-      						<Form.Control as="textarea" id="var1" className="fs-sm" aria-label="With textarea" placeholder="Input variant here..."></Form.Control>
-      					</td>
-    				</tr>
-    				<tr id="2">
-      					<th scope="row">2</th>
-      					<td className="text-center">
-      						<Form.Control as="textarea" id="var2" className="fs-sm" aria-label="With textarea" placeholder="Input variant here..."></Form.Control>
-      					</td>
-    				</tr>
+    				{columns}
     				<tr className="to-do">
-      					<td colspan="3">
-      						<Button id="add" variant="success" className="d-flex mx-auto px-2">
-      							<svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" fill="currentColor" className="bi bi-plus-lg mt-1 mr-1" viewBox="0 0 16 16">
-  								<path fill-rule="evenodd" d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2Z"/>
+      					<td colSpan="2" className="text-center">
+      						<Button id="add" variant="success" className="px-2 mr-5" onClick={addColumn}>
+      							<svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" fill="currentColor" className="bi bi-plus-lg mb-1 mr-1" viewBox="0 0 16 16">
+  								<path fillRule="evenodd" d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2Z"/>
 								</svg>
-      							<div>Add</div>
+      							<span>Add</span>
       						</Button>
+							{columns.length >= 3 ?
+							<Button id="add" variant="success" className="px-2" onClick={deleteColumn}>
+							<svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" fill="currentColor" class="bi bi-dash mb-1 mr-1" viewBox="0 0 16 16">
+  								<path d="M4 8a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7A.5.5 0 0 1 4 8z"/>
+							</svg>
+      							<span>Delete</span>
+      						</Button>
+							:
+							false}
       					</td>
     				</tr>
   				</tbody>
